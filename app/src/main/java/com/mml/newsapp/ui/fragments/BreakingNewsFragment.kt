@@ -67,6 +67,9 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
                         val totalPages = newsResponse.totalResults / 20 + 2
                         isLastPage = viewModel.breakingNewsPage == totalPages
+                        if(isLastPage){
+                            binding.rvBreakingNews.setPadding(0,0,0,0)
+                        }
                     }
                 }
                 is Resource.Error -> {
@@ -89,7 +92,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
     }
 
     private fun hideProgressBar() {
-        binding.paginationProgressBar.visibility = View.INVISIBLE
+        binding.paginationProgressBar.visibility = View.GONE
         isLoading = false
     }
 
